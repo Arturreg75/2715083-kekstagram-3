@@ -3,7 +3,11 @@ function checkLength(string, count) {
     return true;
   }
   return false;
-};
+}
+
+checkLength('проверяемая строка', 20);
+checkLength('проверяемая строка', 18);
+checkLength('проверяемая строка', 10);
 
 function checkPalindrome(string) {
   let palindromString = '';
@@ -14,7 +18,12 @@ function checkPalindrome(string) {
     return true;
   }
   return false;
-};
+}
+
+checkPalindrome('топот');
+checkPalindrome('ДовОд');
+checkPalindrome('Кекс');
+checkPalindrome('Лёша на полке клопа нашёл ');
 
 function extractNumber(input) {
   const str = input.toString();
@@ -30,4 +39,13 @@ function extractNumber(input) {
     return NaN;
   }
   return parseInt(resultString, 10);
-};
+}
+
+extractNumber('2023 год');
+extractNumber('ECMAScript 2022');
+extractNumber('1 кефир, 0.5 батона');
+extractNumber('агент 007');
+extractNumber('а я томат');
+extractNumber(2023);
+extractNumber(-1);
+extractNumber(1.5);
