@@ -1,11 +1,11 @@
-const checkLength = function(string, count) {
+function checkLength(string, count) {
   if (string.length <= count) {
     return true;
   }
   return false;
 };
 
-const checkPalindrome = function (string) {
+function checkPalindrome(string) {
   let palindromString = '';
   for (let i = string.length - 1; i >= 0; i--) {
     palindromString += string[i];
@@ -16,7 +16,7 @@ const checkPalindrome = function (string) {
   return false;
 };
 
-const extractNumber = function (input) {
+function extractNumber(input) {
   const str = input.toString();
   let resultString = '';
   for (let i = 0; i < str.length; i++) {
