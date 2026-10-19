@@ -49,3 +49,4 @@ extractNumber('а я томат');
 extractNumber(2023);
 extractNumber(-1);
 extractNumber(1.5);
+
