@@ -1,3 +1,4 @@
+const COMMENTS_PER_BATCH = 5;
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureImg = bigPicture.querySelector('.big-picture__img img');
 const likesCount = bigPicture.querySelector('.likes-count');
@@ -22,7 +23,10 @@ const fillBigPicture = (photo) => {
 };
 
 const renderCommentsBatch = () => {
-  const nextComments = currentComments.slice(shownCommentsCount, shownCommentsCount + 5);
+  const nextComments = currentComments.slice(
+    shownCommentsCount,
+    shownCommentsCount + COMMENTS_PER_BATCH
+  );
 
   nextComments.forEach((comment) => {
     const commentElement = document.createElement('li');

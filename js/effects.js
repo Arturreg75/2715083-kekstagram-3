@@ -72,6 +72,14 @@ noUiSlider.create(effectLevelSlider, {
 const updateSlider = (effectName) => {
   const effect = EFFECTS[effectName];
   if (effectName === 'none') {
+    effectLevelSlider.noUiSlider.updateOptions({
+      range: {
+        min: EFFECTS.none.min,
+        max: EFFECTS.none.max,
+      },
+      start: EFFECTS.none.max,
+      step: EFFECTS.none.step,
+    });
     effectLevelContainer.classList.add('hidden');
     return;
   }
@@ -101,7 +109,7 @@ effectsList.addEventListener('change', (evt) => {
   updateSlider(effectName);
 
   if (effectName === 'none') {
-    applyEffect(0, effectName);
+    applyEffect(100, effectName);
     return;
   }
 
@@ -110,12 +118,10 @@ effectsList.addEventListener('change', (evt) => {
 
 const resetEffects = () => {
   const noneRadio = document.querySelector('.effects__radio[value="none"]');
-  if (noneRadio) {
-    noneRadio.checked = true;
-  }
-  effectLevelContainer.classList.add('hidden');
-  previewImage.style.filter = '';
-  effectLevelValue.value = '';
+  noneRadio.checked = true;
+
+  updateSlider('none');
+  applyEffect(EFFECTS.none.max, 'none');
 };
 
 export { resetEffects };

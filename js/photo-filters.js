@@ -3,7 +3,7 @@ import { renderMiniatures, clearMiniatures } from './rendering-miniature.js';
 const RANDOM_PHOTOS_COUNT = 10;
 const FILTER_DELAY = 500;
 const filters = document.querySelector('.img-filters');
-const activeClass = 'img-filters__button--active';
+const ACTIVE_CLASS = 'img-filters__button--active';
 
 const getRandomPhotos = (photos) => {
   const shuffledPhotos = [...photos];
@@ -51,12 +51,12 @@ const initPhotoFilters = (photos) => {
   filters.addEventListener('click', (evt) => {
     const button = evt.target.closest('.img-filters__button');
 
-    if (!button || button.classList.contains(activeClass)) {
+    if (!button || button.classList.contains(ACTIVE_CLASS)) {
       return;
     }
 
-    filters.querySelector(`.${activeClass}`).classList.remove(activeClass);
-    button.classList.add(activeClass);
+    filters.querySelector(`.${ACTIVE_CLASS}`).classList.remove(ACTIVE_CLASS);
+    button.classList.add(ACTIVE_CLASS);
 
     renderFilteredPhotos(button.id);
   });
