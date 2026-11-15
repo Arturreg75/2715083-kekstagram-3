@@ -3,8 +3,8 @@ import { renderMiniatures } from './rendering-miniature.js';
 import { initUploadForm } from './form.js';
 import './scale.js';
 import './effects.js';
-import { initBigPicture } from './big-picture.js';
 import { initPhotoFilters } from './photo-filters.js';
+import { initBigPicture } from './big-picture.js';
 
 let photos = [];
 initUploadForm();
