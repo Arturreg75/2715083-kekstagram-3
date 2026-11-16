@@ -9,7 +9,7 @@ const loadPhotos = () => fetch(`${BASE_URL}/data`)
     return response.json();
   });
 
-const sendPhoto = (formData) => fetch(BASE_URL, {
+const sendPhoto = (formData) => fetch(`${BASE_URL}/`, {
   method: 'POST',
   body: formData,
 })
