@@ -6,6 +6,8 @@ import './effects.js';
 import { initPhotoFilters } from './photo-filters.js';
 import { initBigPicture } from './big-picture.js';
 
+const DATA_ERROR_DURATION = 5000;
+
 let photos = [];
 initUploadForm();
 
@@ -20,9 +22,11 @@ loadPhotos()
 
   .catch(() => {
     const errorTemplate = document.querySelector('#data-error');
-    const errorMessage = errorTemplate.content.cloneNode(true);
+    const errorMessage = errorTemplate.content.firstElementChild.cloneNode(true);
+
     document.body.append(errorMessage);
+
     setTimeout(() => {
-      document.querySelector('.data-error').remove();
-    }, 5000);
+      errorMessage.remove();
+    }, DATA_ERROR_DURATION);
   });

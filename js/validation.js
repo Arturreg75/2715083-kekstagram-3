@@ -8,11 +8,15 @@ const HASHTAG_REGEX = /^#[a-zа-яё0-9]{1,19}$/i;
 
 const parseHashtags = (value) => value.trim().toLowerCase().split(/\s+/).filter(Boolean);
 
-const validateHashtags = (value) => {
+const validateHashtagFormat = (value) =>
+  parseHashtags(value).every((hashtag) => HASHTAG_REGEX.test(hashtag));
+
+const validateHashtagCount = (value) =>
+  parseHashtags(value).length <= MAX_HASHTAG_COUNT;
+
+const validateHashtagUniqueness = (value) => {
   const hashtags = parseHashtags(value);
-  return hashtags.length <= MAX_HASHTAG_COUNT &&
-    hashtags.every((hashtag) => HASHTAG_REGEX.test(hashtag)) &&
-    new Set(hashtags).size === hashtags.length;
+  return new Set(hashtags).size === hashtags.length;
 };
 
 const validateDescription = (value) => value.length <= MAX_DESCRIPTION_LENGTH;
@@ -24,16 +28,12 @@ const pristine = new Pristine(form, {
   errorTextClass: 'img-upload__field-wrapper--error',
 });
 
-pristine.addValidator(hashtagInput, validateHashtags, 'Проверьте хэштеги: не более 5, без повторов; каждый должен начинаться с # и содержать до 19 букв или цифр', 3);
+pristine.addValidator(hashtagInput, validateHashtagFormat, 'Неправильный хэштег');
+pristine.addValidator(hashtagInput, validateHashtagCount, 'Нельзя указать больше пяти хэштегов');
+pristine.addValidator(hashtagInput, validateHashtagUniqueness, 'Хэштеги не должны повторяться');
 pristine.addValidator(descriptionInput, validateDescription, `Длина комментария не может превышать ${MAX_DESCRIPTION_LENGTH} символов`);
 
 const validateForm = () => pristine.validate();
 const resetValidation = () => pristine.reset();
-
-form.addEventListener('submit', (evt) => {
-  if (!validateForm()) {
-    evt.preventDefault();
-  }
-});
 
 export { validateForm, resetValidation };

@@ -50,7 +50,7 @@ const removeMessage = () => {
   if (activeMessage) {
     activeMessage.remove();
     activeMessage = null;
-    document.removeEventListener('keydown', onMessageKeydown);
+    document.removeEventListener('keydown', onMessageKeydown, true);
     document.removeEventListener('click', onOutsideMessageClick);
   }
 };
@@ -58,6 +58,7 @@ const removeMessage = () => {
 function onMessageKeydown(evt) {
   if (evt.key === 'Escape') {
     evt.preventDefault();
+    evt.stopPropagation();
     removeMessage();
   }
 }
@@ -74,7 +75,7 @@ const showMessage = (template) => {
   document.body.appendChild(activeMessage);
   const button = activeMessage.querySelector('button');
   button.addEventListener('click', removeMessage, { once: true });
-  document.addEventListener('keydown', onMessageKeydown);
+  document.addEventListener('keydown', onMessageKeydown, true);
   document.addEventListener('click', onOutsideMessageClick);
 };
 
