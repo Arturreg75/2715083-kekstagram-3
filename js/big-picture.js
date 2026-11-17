@@ -7,8 +7,9 @@ const commentTotalCount = bigPicture.querySelector('.social__comment-total-count
 const socialComments = bigPicture.querySelector('.social__comments');
 const socialCaption = bigPicture.querySelector('.social__caption');
 const commentCount = bigPicture.querySelector('.social__comment-count');
-const commentsLoader = bigPicture.querySelector('.comments-loader');
 const pictureCancel = bigPicture.querySelector('#picture-cancel');
+const commentsLoader = bigPicture.querySelector('.comments-loader');
+
 
 let currentComments = [];
 let shownCommentsCount = 0;
